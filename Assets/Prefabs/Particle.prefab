@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5081149617855007626}
   - component: {fileID: 658760021227665722}
   - component: {fileID: 1814397857462538696}
-  - component: {fileID: 6184397783636381613}
   - component: {fileID: 8814269131658222336}
   m_Layer: 0
   m_Name: Particle
@@ -92,27 +91,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &6184397783636381613
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 828837087650930375}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8814269131658222336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,15 +103,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e46e11c967b0c41b2f5237b9a3b166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FreeFallSimulation
-  initialHeight: 5
-  initialVelocity: 10
-  groundHeight: -5
-  gravity: -9.81
-  restitution: 0.8
+  initialPosition: {x: 10, y: 0, z: 0}
+  initialVelocity: {x: -10, y: 10, z: 0}
+  gravity: {x: 0, y: -9.81, z: 0}
   dragCoefficient: 0.1
   massFactor: 1
-  stopThreshold: 0.05
-  forceGizmoScale: 0.1
-  gravityColor: {r: 0, g: 0, b: 1, a: 1}
-  dragColor: {r: 1, g: 0, b: 0, a: 1}
-  netForceColor: {r: 0, g: 1, b: 0, a: 1}
+  restitution: 0.8
+  friction: 0.2
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 16
+  skin: 0.001
