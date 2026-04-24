@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class ParticleWorld : MonoBehaviour
 {
-    private static List<Particle> particles = new();
+    private static List<Particle> particles = new(); // Hace una lista para ls partículas
 
-    public static void Register(Particle p)
+    public static void Register(Particle p) // Cada partícula al momento de crerse, se registra
     {
         if (!particles.Contains(p)) particles.Add(p);
     }
 
-    public static void Unregister(Particle p)
+    public static void Unregister(Particle p) // Cuando se desactiva, pues la quita de la lista
     {
         particles.Remove(p);
     }
@@ -18,8 +18,8 @@ public class ParticleWorld : MonoBehaviour
     private void OnEnable()
     {
         if (SimulationManager.Instance == null) return;
-        SimulationManager.Instance.OnSimulationStep += Step;
-        SimulationManager.Instance.OnSimulationReset += ResetAll;
+        SimulationManager.Instance.OnSimulationStep += Step; // Cada paso de la simuación se suscribe al evento
+        SimulationManager.Instance.OnSimulationReset += ResetAll; // Las reinicia
     }
 
     private void OnDisable()
@@ -29,7 +29,7 @@ public class ParticleWorld : MonoBehaviour
         SimulationManager.Instance.OnSimulationReset -= ResetAll;
     }
 
-    private void Step(float dt)
+    private void Step(float dt) // Los pasos dependen del tiempo
     {
         // 1. Integración: cada partícula actualiza su velocidad según fuerzas
         foreach (Particle p in particles) p.Integrate(dt);
@@ -44,7 +44,7 @@ public class ParticleWorld : MonoBehaviour
         foreach (Particle p in particles) p.UpdateVisuals();
     }
 
-    private void ResolveParticlePairs()
+    private void ResolveParticlePairs() // Por parejas, recorre las partículas y a cada una la une con otra, si esas están en colisión calcul las fuerzas y colisiones
     {
         for (int i = 0; i < particles.Count; i++)
         {
